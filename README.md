@@ -68,10 +68,10 @@ Or install it yourself as:
 
 If all you want to add is a header for Rails application's `asset_host`, just add this gem and you're done.
 
-If you would like to add `preconnect` headers to additional domains, simply configure it in an initializer:
+If you would like to add `preconnect` headers to additional URLs, simply configure it in an initializer:
 
 ```ruby
-RailsHttpPreload.config.additional_domains = %w[graphql.mydomain.com images.mydomain.com]
+RailsHttpPreload.config.additional_urls = %w[https://graphql.mydomain.com https://images.mydomain.com]
 ```
 
 ## Development

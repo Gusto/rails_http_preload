@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     rails_http_preload (0.1.0)
-      actionpack
       rails
 
 GEM
@@ -167,10 +166,11 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
-  minitest (~> 5.0)
+  minitest
+  rack-test
   rails_http_preload!
-  rake (~> 13.0)
-  rubocop (~> 1.21)
+  rake
+  rubocop
 
 BUNDLED WITH
    2.3.7

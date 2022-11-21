@@ -9,14 +9,26 @@
 require "action_controller/railtie"
 
 class MyApp < Rails::Application
-  routes.append { root "hello#world" }
+  config.root = __dir__
+  config.hosts << "example.org"
+  secrets.secret_key_base = "secret_key_base"
 
-  # Eager load. Production style.
-  config.eager_load = true
+  config.asset_host = "cdn.example.org"
+  config.logger = Logger.new($stdout)
+  Rails.logger  = config.logger
+
+  routes.draw do
+    get "/" => "hello#world"
+    get "/json" => "hello#json"
+  end
 end
 
 class HelloController < ActionController::Base
   def world
     render html: "<p>Hello world!</p>"
+  end
+
+  def json
+    render json: "Hello world!"
   end
 end

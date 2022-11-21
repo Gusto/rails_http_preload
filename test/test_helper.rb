@@ -5,3 +5,4 @@ require "rails_http_preload"
 
 require "minitest/autorun"
 require_relative "app"
+require "rack/test"
