@@ -9,7 +9,8 @@ Gem::Specification.new do |spec|
   spec.email = ["nate.berkopec@gusto.com"]
 
   spec.summary = "Automatically add an HTTP header to Rails apps to use 103 Early Hints"
-  spec.description = "Automatically add a `link` header directing clients to `preconnect` to your `asset_host` to HTML document responses in Rails."
+  spec.description = "Automatically add a `link` header directing clients to " \
+                     "`preconnect` to your `asset_host` to HTML document responses in Rails."
   spec.homepage = "https://github.com/gusto/rails_http_preload"
   spec.required_ruby_version = ">= 2.6.0"
 
@@ -29,4 +30,5 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+  spec.metadata["rubygems_mfa_required"] = "true"
 end
