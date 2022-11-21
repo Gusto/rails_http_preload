@@ -1,5 +1,7 @@
 # RailsHttpPreload
 
+Automatically add a `link` header directing clients to `preconnect` to your `asset_host` to HTML document responses in Rails.
+
 This gem is intended a test platform for including a new feature into Rails. As of this writing, this feature has not yet been included in Rails.
 
 The 103 Early Hints status code is intended to allow application developers to signal to the client what critical resources will need to be loaded along with the requested resource. Early Hints can be returned to the client _before_ the actual response. This is much faster than waiting for the server think time to create the actual response.
