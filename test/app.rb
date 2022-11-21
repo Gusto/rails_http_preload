@@ -12,12 +12,13 @@ class MyApp < Rails::Application
   config.root = __dir__
   config.hosts << "example.org"
   secrets.secret_key_base = "secret_key_base"
+  config.eager_load = true
 
-  config.asset_host = "cdn.example.org"
-  config.logger = Logger.new($stdout)
+  config.asset_host = "https://cdn.example.org"
+  config.logger = Logger.new(nil)
   Rails.logger  = config.logger
 
-  routes.draw do
+  routes.append do
     get "/" => "hello#world"
     get "/json" => "hello#json"
   end

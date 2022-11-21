@@ -2,6 +2,8 @@ PATH
   remote: .
   specs:
     rails_http_preload (0.1.0)
+      actionpack
+      actionview
       rails
 
 GEM
