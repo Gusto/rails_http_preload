@@ -36,9 +36,9 @@ module RailsHttpPreload
 
       def to_s
         [
-          create_link_header(compute_asset_host(config.asset_host)),
-          *config.additional_urls&.map { |url| create_link_header(url) }
-        ].join(", ")
+          compute_asset_host(config.asset_host),
+          *config.additional_urls
+        ].compact.map { |url| create_link_header(url) }.join(", ")
       end
 
       def create_link_header(url)

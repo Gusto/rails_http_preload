@@ -72,6 +72,4 @@ class TestRailsHttpPreload < Minitest::Test
                  "rel=preconnect, <https://images.example.org>; rel=preconnect",
                  last_response.headers["Link"]
   end
-
-  # tests for how compute_asset_path works
 end
