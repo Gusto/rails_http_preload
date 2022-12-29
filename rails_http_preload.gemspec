@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.metadata["rubygems_mfa_required"] = "true"
 
-  spec.add_dependency "rails"
   spec.add_dependency "actionpack"
   spec.add_dependency "actionview"
+  spec.add_dependency "rails"
 end
