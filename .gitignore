@@ -8,3 +8,4 @@
 /tmp/
 test/log
 test/tmp
+.ruby-version
