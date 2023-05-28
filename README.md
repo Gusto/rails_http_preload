@@ -47,7 +47,7 @@ In the best case scenario, your observed Largest Contentful Paint times should b
 
 ### Worst Case Scenario
 
-In the worst case, nothing happens. For example, your CDN doesn't support early hints. No problem, you've just added ~1kb of HTTP headers to your responses, it's basically a no-op. You cannot really create new bugs or bad behavior by including this header.
+In the worst case, nothing happens. For example, your CDN doesn't support early hints. No problem, you've just added a few bytes of HTTP headers to your responses, it's basically a no-op. You cannot really create new bugs or bad behavior by including this header.
 ## Installation
 
 Add this line to your application's Gemfile:
