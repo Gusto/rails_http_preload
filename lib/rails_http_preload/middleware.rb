@@ -36,7 +36,7 @@ module RailsHttpPreload
 
     # If the asset host is equal to the request domain, no need to add.
     def already_connected?(request)
-      request.original_url.starts_with?(current_asset_host)
+      request.base_url == current_asset_host
     end
 
     def preconnect_header(response)
