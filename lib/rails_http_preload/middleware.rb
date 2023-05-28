@@ -13,7 +13,7 @@ module RailsHttpPreload
     def call(env)
       response = @app.call(env)
 
-      response[1]["Link"] = preconnect_header if required?(response, ActionDispatch::Request.new(env))
+      response[1]["Link"] = preconnect_header(response) if required?(response, ActionDispatch::Request.new(env))
 
       response
     end
@@ -21,8 +21,7 @@ module RailsHttpPreload
     # TODO: Should we just add it to every response anyway and let the browser
     # figure it out?
     def required?(response, request)
-      html?(response) &&
-        !already_connected?(request)
+      config.asset_host.present? && html?(response) && !already_connected?(request)
     end
 
     # Adding this header to, for example, a JSON response would be pointless
@@ -31,18 +30,26 @@ module RailsHttpPreload
       response[1]["Content-Type"].match?("html")
     end
 
-    # If the asset host is equal to the request domain, no need to add.
-    def already_connected?(request)
-      protocol = request.protocol.gsub("://", "")
-      ActionController::Base.helpers.compute_asset_host("", host: config.asset_host) ==
-        ActionController::Base.helpers.compute_asset_host("", { protocol: protocol, host: request.domain })
+    def current_asset_host
+      ActionController::Base.helpers.compute_asset_host("", host: config.asset_host)
     end
 
-    def preconnect_header
-      [
-        ActionController::Base.helpers.compute_asset_host("", host: config.asset_host),
+    # If the asset host is equal to the request domain, no need to add.
+    def already_connected?(request)
+      request.original_url.starts_with?(current_asset_host)
+    end
+
+    def preconnect_header(response)
+      header = [
+        current_asset_host,
         *config.additional_urls
       ].compact.map { |url| create_link_header(url) }.join(", ")
+
+      if response[1]["Link"]
+        "#{header}, #{response[1]["Link"]}"
+      else
+        header
+      end
     end
 
     def create_link_header(url)

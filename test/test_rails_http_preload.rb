@@ -72,4 +72,19 @@ class TestRailsHttpPreload < Minitest::Test
                  "rel=preconnect, <https://images.example.org>; rel=preconnect",
                  last_response.headers["Link"]
   end
+
+  def test_does_not_add_blank_link_header_if_asset_host_blank
+    RailsHttpPreload.config.asset_host = ""
+
+    get "/"
+
+    assert_nil last_response.headers["Link"]
+  end
+
+  def test_appends_to_existing_link_headers
+    get "/existing_link_header"
+
+    assert_equal "<https://cdn.example.org>; rel=preconnect, <https://other.example.org>; rel=preconnect",
+                 last_response.headers["Link"]
+  end
 end

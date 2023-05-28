@@ -21,6 +21,7 @@ class MyApp < Rails::Application
   routes.append do
     get "/" => "hello#world"
     get "/json" => "hello#json"
+    get "/existing_link_header" => "hello#existing_link_header"
   end
 end
 
@@ -31,5 +32,10 @@ class HelloController < ActionController::Base
 
   def json
     render json: "Hello world!"
+  end
+
+  def existing_link_header
+    response.set_header("Link", "<https://other.example.org>; rel=preconnect")
+    render html: "<p>Hello world!</p>"
   end
 end
