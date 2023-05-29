@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "action_view/helpers/asset_url_helper"
-require "active_support/concern"
 require "action_dispatch"
 
 module RailsHttpPreload
